@@ -1,0 +1,3 @@
+lib
+node_modules
+**/__test__snapshots__

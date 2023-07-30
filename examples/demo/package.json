@@ -1,0 +1,33 @@
+{
+  "private": true,
+  "scripts": {
+    "dev": "umi dev",
+    "build": "umi build",
+    "postinstall": "umi setup",
+    "start": "npm run dev",
+    "rebuild-deps": "electron-builder install-app-deps",
+    "electron:init": "umi electron init",
+    "electron:dev": "umi dev electron",
+    "electron:dir": "umi build electron --dir",
+    "electron:build:win": "umi build electron --win",
+    "electron:build:mac": "umi build electron --mac",
+    "electron:build:linux": "umi build electron --linux"
+  },
+  "dependencies": {
+    "umi": "^4.0.67"
+  },
+  "devDependencies": {
+    "@liangskyli/umijs-plugin-electron": "workspace:*",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.1",
+    "@umijs/lint": "^4.0.72",
+    "electron": "^22.3.18",
+    "electron-builder": "^23.6.0",
+    "prettier": "^2.8.8",
+    "prettier-plugin-organize-imports": "^3.2.2",
+    "prettier-plugin-packagejson": "^2.4.3",
+    "typescript": "^5.0.4"
+  },
+  "name": "umi_electron_app",
+  "version": "0.0.1"
+}

@@ -1,0 +1,3 @@
+dist_electron
+node_modules
+**/__test__snapshots__

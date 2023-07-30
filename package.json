@@ -1,0 +1,54 @@
+{
+  "name": "root",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liangskyli/umi-electron.git"
+  },
+  "scripts": {
+    "test": "lerna run test",
+    "prepare": "husky install",
+    "preinstall": "npx only-allow pnpm",
+    "version:pre": "echo '发布预发布beta版本' && cross-env HUSKY=1 lerna version prerelease --preid beta",
+    "version:preminor": "echo '发布小版本beta版本' && cross-env HUSKY=1 lerna version preminor --preid beta",
+    "version:premajor": "echo '发布主版本beta版本' && cross-env HUSKY=1 lerna version premajor --preid beta",
+    "version:patch": "echo '发布补丁版本' && cross-env HUSKY=1 lerna version patch",
+    "version:minor": "echo '发布小版本' && cross-env HUSKY=1 lerna version minor",
+    "version:major": "echo '发布主版本' && cross-env HUSKY=1 lerna version major",
+    "version:graduate": "echo '预发布版本包升级为稳定版本' && cross-env HUSKY=1 lerna version --conventional-graduate",
+    "publish-all": "lerna run build && lerna publish from-package",
+    "publish-all-pre": "lerna run build && lerna publish from-package --pre-dist-tag beta",
+    "update:deps": "pnpm update --interactive --latest"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "prettier --write",
+      "node script/lint"
+    ]
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.6.7",
+    "@commitlint/config-conventional": "^17.6.7",
+    "@commitlint/config-pnpm-scopes": "^17.5.0",
+    "@types/node": "^20.4.4",
+    "@umijs/lint": "^4.0.72",
+    "@vitest/coverage-v8": "^0.33.0",
+    "cross-env": "^7.0.3",
+    "eslint": "^8.45.0",
+    "execa": "^7.1.1",
+    "father": "^4.3.0",
+    "husky": "^8.0.3",
+    "lerna": "7.1.4",
+    "lint-staged": "^13.2.3",
+    "prettier": "^3.0.0",
+    "prettier-plugin-organize-imports": "^3.2.3",
+    "prettier-plugin-packagejson": "^2.4.5",
+    "typescript": "^5.1.6",
+    "vitest": "^0.33.0"
+  },
+  "packageManager": "pnpm@8.6.9",
+  "engines": {
+    "node": ">=16.14.0",
+    "pnpm": "^8"
+  }
+}

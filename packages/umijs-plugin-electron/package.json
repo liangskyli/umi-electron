@@ -1,0 +1,54 @@
+{
+  "name": "@liangskyli/umijs-plugin-electron",
+  "version": "0.0.1",
+  "description": "Umi plugin for electron",
+  "author": "liangsky <640634387@qq.com>",
+  "homepage": "https://github.com/liangskyli/umi-electron#readme",
+  "license": "MIT",
+  "keywords": [
+    "electron",
+    "umi",
+    "umi plugin"
+  ],
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "typings": "./lib/index.d.ts",
+  "files": [
+    "lib",
+    "docs",
+    "CHANGELOG.md",
+    "LICENSE",
+    "README.md",
+    "package.json"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liangskyli/umi-electron.git"
+  },
+  "scripts": {
+    "dev": "father dev",
+    "build": "father build",
+    "update:deps": "pnpm update --interactive --latest"
+  },
+  "dependencies": {
+    "@umijs/utils": "^4.0.73",
+    "vite": "^4.4.7",
+    "yargs": "^17.7.2"
+  },
+  "devDependencies": {
+    "electron": "^25.3.2",
+    "electron-builder": "^24.6.3",
+    "umi": "^4.0.73"
+  },
+  "peerDependencies": {
+    "electron": "*",
+    "electron-builder": "*",
+    "umi": "^4.0.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "bugs": {
+    "url": "https://github.com/liangskyli/umi-electron/issues"
+  }
+}
