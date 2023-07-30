@@ -1,4 +1,4 @@
-import { Link, Outlet } from 'umi';
+import { Link, Outlet } from '@umijs/max';
 import styles from './index.less';
 
 export default function Layout() {
