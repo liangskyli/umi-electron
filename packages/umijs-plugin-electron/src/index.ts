@@ -1,8 +1,7 @@
 import { chalk, fsExtra, lodash } from '@umijs/utils';
+import { configureBuildCommand } from 'electron-builder/out/builder';
 import * as path from 'path';
 import type { IApi } from 'umi';
-// @ts-ignore
-import { configureBuildCommand } from 'electron-builder/out/builder';
 import yargs from 'yargs';
 import { buildElectron } from './build-electron';
 import { runBuild, runDev } from './compile';
@@ -14,7 +13,6 @@ import {
   getBuildDir,
   getBundledDir,
   getMainSrc,
-  getNodeModulesPath,
   getPreloadSrc,
   getRootPkg,
   logProcess,
@@ -28,7 +26,6 @@ const defaultConfig: ElectronConfig = {
   builderOptions: {},
   externals: [],
   outputDir: 'dist_electron',
-  routerMode: 'hash',
   debugPort: 5858,
   preloadEntry: {
     'index.ts': 'preload.js',
@@ -56,7 +53,6 @@ export default function (api: IApi) {
           outputDir: zod.string().optional(),
           externals: zod.string().array().optional(),
           builderOptions: zod.record(zod.string(), zod.any()).optional(),
-          routerMode: zod.enum(['hash', 'memory', 'browser']).optional(),
           debugPort: zod.number().optional(),
           preloadEntry: zod.record(zod.string(), zod.string()).optional(),
           viteConfig: zod
@@ -120,16 +116,10 @@ export default function (api: IApi) {
   api.modifyConfig((oldConfig) => {
     const config = lodash.merge({ electron: defaultConfig }, oldConfig);
 
-    const { outputDir, externals, routerMode } =
-      config.electron as ElectronConfig;
+    const { outputDir, externals } = config.electron as ElectronConfig;
     config.outputPath = path.join(outputDir, 'bundled');
     config.alias = config.alias || {};
     config.alias['@/common'] = path.join(process.cwd(), 'src/common');
-
-    config.history = config.history || {
-      type: routerMode,
-    };
-    config.history.type = routerMode;
 
     const configExternals: any = {
       electron: 'require(\'electron\')',
@@ -187,26 +177,6 @@ export default function (api: IApi) {
       }
     });
 
-    //处理内置依赖
-    const buildDependencies: string[] = [];
-    for (const dep of buildDependencies) {
-      const depPackageJsonPath = path.join(
-        getNodeModulesPath(),
-        dep,
-        'package.json',
-      );
-      if (fsExtra.existsSync(depPackageJsonPath)) {
-        buildPkg.dependencies![dep] = require(depPackageJsonPath).version;
-      } else {
-        buildPkg.dependencies![dep] = require(path.join(
-          process.cwd(),
-          'node_modules',
-          dep,
-          'package.json',
-        ))?.version;
-      }
-    }
-
     const buildDir = getBuildDir(api);
 
     fsExtra.copySync(buildDir, getBundledDir(api), { overwrite: true });
@@ -240,15 +210,15 @@ export default function (api: IApi) {
       .command(['build', '*'], 'Build', configureBuildCommand)
       .parse(process.argv);
     const userConfig: Parameters<typeof buildElectron>[0] = {
-      rawOptions: builderArgs,
+      rawOptions: builderArgs as any,
       config: {
+        files: ['**'],
+        extends: null,
         ...builderOptions,
         directories: {
           output: absOutputDir,
           app: `${absOutputDir}/bundled`,
         },
-        files: ['**'],
-        extends: null,
       },
     };
 

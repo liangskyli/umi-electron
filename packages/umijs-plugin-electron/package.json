@@ -36,6 +36,7 @@
     "yargs": "^17.7.2"
   },
   "devDependencies": {
+    "@types/yargs": "^17.0.24",
     "electron": "^25.3.2",
     "electron-builder": "^24.6.3",
     "umi": "^4.0.73"

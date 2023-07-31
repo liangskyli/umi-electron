@@ -1,12 +1,7 @@
 import { fsExtra } from '@umijs/utils';
 import path from 'path';
 import type { IApi } from 'umi';
-import {
-  // getNodeModulesPath,
-  getRootPkg,
-  installDevDependencies,
-  setNpmClient,
-} from './utils';
+import { getRootPkg, installDevDependencies, setNpmClient } from './utils';
 
 /**
  * 检查环境是否满足运行，不满足则自动配置环境
@@ -73,39 +68,46 @@ export default (api: IApi) => {
     isUpdateRootPkg = true;
   }
 
+  const umiCliName = api.appData.umi.cliName;
   // 复制模板到主进程目录
   if (!rootPkg.scripts['electron:init']) {
-    rootPkg.scripts['electron:init'] = 'umi electron init';
+    rootPkg.scripts['electron:init'] = `${umiCliName} electron init`;
     isUpdateRootPkg = true;
   }
 
   // 以开发环境启动electron
   if (!rootPkg.scripts['electron:dev']) {
-    rootPkg.scripts['electron:dev'] = 'umi dev electron';
+    rootPkg.scripts['electron:dev'] = `${umiCliName} dev electron`;
     isUpdateRootPkg = true;
   }
 
   // 打包成文件夹 不封装成安装包
   if (!rootPkg.scripts['electron:dir']) {
-    rootPkg.scripts['electron:dir'] = 'umi build electron --dir';
+    rootPkg.scripts['electron:dir'] = `${umiCliName} build electron --dir`;
     isUpdateRootPkg = true;
   }
 
   // 打包electron windows平台
   if (!rootPkg.scripts['electron:build:win']) {
-    rootPkg.scripts['electron:build:win'] = 'umi build electron --win';
+    rootPkg.scripts[
+      'electron:build:win'
+    ] = `${umiCliName} build electron --win`;
     isUpdateRootPkg = true;
   }
 
   // 打包electron mac平台
   if (!rootPkg.scripts['electron:build:mac']) {
-    rootPkg.scripts['electron:build:mac'] = 'umi build electron --mac';
+    rootPkg.scripts[
+      'electron:build:mac'
+    ] = `${umiCliName} build electron --mac`;
     isUpdateRootPkg = true;
   }
 
   // 打包electron linux平台
   if (!rootPkg.scripts['electron:build:linux']) {
-    rootPkg.scripts['electron:build:linux'] = 'umi build electron --linux';
+    rootPkg.scripts[
+      'electron:build:linux'
+    ] = `${umiCliName} build electron --linux`;
     isUpdateRootPkg = true;
   }
 

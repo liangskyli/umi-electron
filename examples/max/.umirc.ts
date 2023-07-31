@@ -6,4 +6,5 @@ export default defineConfig({
   npmClient: 'pnpm',
   plugins: ['@liangskyli/umijs-plugin-electron'],
   electron: electron,
+  history: { type: 'hash' },
 });
