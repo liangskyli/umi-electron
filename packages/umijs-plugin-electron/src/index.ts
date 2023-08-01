@@ -26,6 +26,7 @@ const defaultConfig: ElectronConfig = {
   builderOptions: {},
   externals: [],
   outputDir: 'dist_electron',
+  routerMode: 'hash',
   debugPort: 5858,
   preloadEntry: {
     'index.ts': 'preload.js',
@@ -53,6 +54,7 @@ export default function (api: IApi) {
           outputDir: zod.string().optional(),
           externals: zod.string().array().optional(),
           builderOptions: zod.record(zod.string(), zod.any()).optional(),
+          routerMode: zod.enum(['hash', 'memory']).optional(),
           debugPort: zod.number().optional(),
           preloadEntry: zod.record(zod.string(), zod.string()).optional(),
           viteConfig: zod
@@ -116,10 +118,16 @@ export default function (api: IApi) {
   api.modifyConfig((oldConfig) => {
     const config = lodash.merge({ electron: defaultConfig }, oldConfig);
 
-    const { outputDir, externals } = config.electron as ElectronConfig;
+    const { outputDir, externals, routerMode } =
+      config.electron as ElectronConfig;
     config.outputPath = path.join(outputDir, 'bundled');
     config.alias = config.alias || {};
     config.alias['@/common'] = path.join(process.cwd(), 'src/common');
+
+    config.history = config.history || {
+      type: routerMode,
+    };
+    config.history.type = routerMode;
 
     const configExternals: any = {
       electron: 'require(\'electron\')',

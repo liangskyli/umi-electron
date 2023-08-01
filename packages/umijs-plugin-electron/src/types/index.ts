@@ -5,6 +5,8 @@ export type ConfigType = 'main' | 'preload';
 
 export type LogType = 'normal' | 'error';
 
+export type RouterMode = 'hash' | 'memory';
+
 export interface ElectronConfig {
   /** 主进程src目录 */
   mainSrc: string;
@@ -14,6 +16,8 @@ export interface ElectronConfig {
   externals: string[];
   /** 打包目录 */
   outputDir: string;
+  /** 路由模式 */
+  routerMode: RouterMode;
   /** 打包参数
    * see: https://www.electron.build/configuration/configuration
    * */
