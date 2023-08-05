@@ -9,7 +9,7 @@
   </a>
 </p>
 
-> 本插件提供基于umijs的electron的开发及打包，无需修改项目结构，支持混合项目结构和main+renderer项目结构，支持 umi@^4,@umijs/max@^4版本
+> 本插件提供基于umijs的electron的开发及打包，无需修改项目结构，支持 umi@^4,@umijs/max@^4版本
 
 - 项目结构示例 <a href="https://github.com/liangskyli/umi-electron/tree/master/examples">点此访问</a>
 - 基于umi4项目结构，插件可自动生成electron相关文件
