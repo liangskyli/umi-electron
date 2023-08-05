@@ -1,6 +1,7 @@
 {
   "npmClient": "pnpm",
   "version": "0.0.1",
+  "packages": ["packages/*"],
   "command": {
     "version": {
       "conventionalCommits": true,

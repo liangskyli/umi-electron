@@ -15,7 +15,6 @@
   "typings": "./lib/index.d.ts",
   "files": [
     "lib",
-    "docs",
     "CHANGELOG.md",
     "LICENSE",
     "README.md",
@@ -29,6 +28,9 @@
     "dev": "father dev",
     "build": "father build",
     "update:deps": "pnpm update --interactive --latest"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "dependencies": {
     "@umijs/utils": "^4.0.73",
