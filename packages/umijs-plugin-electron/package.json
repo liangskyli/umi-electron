@@ -15,6 +15,7 @@
   "typings": "./lib/index.d.ts",
   "files": [
     "lib",
+    "template",
     "CHANGELOG.md",
     "LICENSE",
     "README.md",
