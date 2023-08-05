@@ -22,7 +22,7 @@ export interface ElectronConfig {
    * see: https://www.electron.build/configuration/configuration
    * */
   builderOptions: Configuration;
-  /** 调试端口 */
+  /** 主进程调试端口 */
   debugPort: number;
   /** preload配置 key为输入文件名，值为输出文件名 */
   preloadEntry: { [key: string]: string };

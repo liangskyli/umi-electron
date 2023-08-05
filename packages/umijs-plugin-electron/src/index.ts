@@ -18,8 +18,6 @@ import {
   logProcess,
 } from './utils';
 
-export type IElectronConfig = Partial<ElectronConfig>;
-
 const defaultConfig: ElectronConfig = {
   mainSrc: 'src/main',
   preloadSrc: 'src/preload',

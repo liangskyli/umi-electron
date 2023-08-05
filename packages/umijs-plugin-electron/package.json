@@ -42,7 +42,7 @@
     "umi": "^4.0.73"
   },
   "peerDependencies": {
-    "electron": "*",
+    "electron": "^22.0.0",
     "electron-builder": "*",
     "umi": "^4.0.0"
   },
