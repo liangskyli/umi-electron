@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.1](https://github.com/liangskyli/umi-electron/compare/v0.1.0...v0.1.1) (2023-08-05)
+
+
+### Features
+
+* modify doc ([6f2ed90](https://github.com/liangskyli/umi-electron/commit/6f2ed90b1ee8f909a5af2c2c53f023ae6a51f1f3))
+
+
+### Bug Fixes
+
+* publish add template folder ([2796fa8](https://github.com/liangskyli/umi-electron/commit/2796fa8369345c407646de73dee6755adac47ec6))
+
+
+
 ## 0.1.0 (2023-08-05)
 
 
