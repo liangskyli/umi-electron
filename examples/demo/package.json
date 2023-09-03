@@ -14,19 +14,19 @@
     "electron:build:linux": "umi build electron --linux"
   },
   "dependencies": {
-    "umi": "^4.0.67"
+    "umi": "^4.0.79"
   },
   "devDependencies": {
     "@liangskyli/umijs-plugin-electron": "workspace:*",
-    "@types/react": "^18.2.0",
-    "@types/react-dom": "^18.2.1",
-    "@umijs/lint": "^4.0.72",
+    "@types/react": "^18.2.21",
+    "@types/react-dom": "^18.2.7",
+    "@umijs/lint": "^4.0.79",
     "electron": "^22.3.18",
     "electron-builder": "^23.6.0",
-    "prettier": "^2.8.8",
+    "prettier": "^3.0.3",
     "prettier-plugin-organize-imports": "^3.2.2",
     "prettier-plugin-packagejson": "^2.4.3",
-    "typescript": "^5.0.4"
+    "typescript": "^5.2.2"
   },
   "name": "umi_electron_app",
   "version": "0.0.1"
