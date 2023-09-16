@@ -1,6 +1,6 @@
 {
   "name": "@liangskyli/umijs-plugin-electron",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Umi plugin for electron",
   "author": "liangsky <640634387@qq.com>",
   "homepage": "https://github.com/liangskyli/umi-electron#readme",

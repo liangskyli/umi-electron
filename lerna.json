@@ -1,17 +1,13 @@
 {
   "npmClient": "pnpm",
-  "version": "0.1.2",
-  "packages": [
-    "packages/*"
-  ],
+  "version": "0.2.0",
+  "packages": ["packages/*"],
   "command": {
     "version": {
       "conventionalCommits": true,
       "changelogPreset": {
         "name": "conventional-changelog-conventionalcommits",
-        "issuePrefixes": [
-          "#"
-        ],
+        "issuePrefixes": ["#"],
         "types": [
           {
             "type": "feat",
@@ -78,10 +74,7 @@
       "push": false
     },
     "publish": {
-      "ignoreChanges": [
-        "ignored-file",
-        "*.md"
-      ],
+      "ignoreChanges": ["ignored-file", "*.md"],
       "registry": "https://registry.npmjs.org/",
       "message": "chore: publish release %s"
     }

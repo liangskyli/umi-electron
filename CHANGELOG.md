@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.0](https://github.com/liangskyli/umi-electron/compare/v0.1.2...v0.2.0) (2023-09-16)
+
+
+### Features
+
+* darwin platform close window use hide window, main window extract independent file ([1eae633](https://github.com/liangskyli/umi-electron/commit/1eae63396e767a5537711d0ae779b3440c17123e))
+
+
+### Bug Fixes
+
+* main,reload template add independent tsconfig.json ([158de03](https://github.com/liangskyli/umi-electron/commit/158de03a3c00f2bab10aec0c466131fb4ceb446c))
+
+
+
 ## [0.1.2](https://github.com/liangskyli/umi-electron/compare/v0.1.1...v0.1.2) (2023-09-03)
 
 
