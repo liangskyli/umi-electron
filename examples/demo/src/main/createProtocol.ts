@@ -2,7 +2,7 @@ import { protocol } from 'electron';
 import * as path from 'path';
 import { URL } from 'url';
 
-export default (scheme: string) => {
+const createProtocol = (scheme: string) => {
   protocol.registerFileProtocol(scheme, (request, respond) => {
     let pathName = new URL(request.url).pathname;
     pathName = decodeURI(pathName); // Needed in case URL contains spaces
@@ -11,3 +11,4 @@ export default (scheme: string) => {
     respond({ path: filePath });
   });
 };
+export default createProtocol;
