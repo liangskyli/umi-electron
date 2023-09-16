@@ -5,6 +5,8 @@ import type { ElectronConfig } from '../types';
 
 let npmClient = 'pnpm';
 
+export const commonSrc = 'src/common';
+
 /**
  * 设置npm客户端
  * @param _npmClient
@@ -196,3 +198,37 @@ export function logError(
 ) {
   logProcess(label, error.stack || error.toString(), chalk.red);
 }
+
+export const getAbsolutePath = (pathName: string) => {
+  return path.isAbsolute(pathName)
+    ? pathName
+    : path.join(process.cwd(), pathName);
+};
+
+export const getRelativePath = (
+  absolutePath1: string,
+  absolutePath2: string,
+) => {
+  return path.relative(absolutePath1, absolutePath2);
+};
+
+const getCommonTsConfigPath = (api: IApi) => {
+  const { mainSrc } = api.config.electron as ElectronConfig;
+  const commonRelativePath = getRelativePath(
+    getAbsolutePath(mainSrc),
+    getAbsolutePath(commonSrc),
+  );
+  return commonRelativePath;
+};
+
+export const modifyTsConfigFile = (api: IApi, dir: string) => {
+  const commonRelativePath = getCommonTsConfigPath(api);
+  const tsconfigPath = path.join(dir, './tsconfig.json');
+  let tsconfigData = fsExtra.readFileSync(tsconfigPath, { encoding: 'utf-8' });
+  tsconfigData = tsconfigData.replace(
+    /{{commonRelativePath}}/gi,
+    `${commonRelativePath}/*`,
+  );
+
+  fsExtra.writeFileSync(tsconfigPath, tsconfigData);
+};

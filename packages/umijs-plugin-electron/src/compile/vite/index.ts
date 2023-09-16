@@ -4,6 +4,7 @@ import type { InlineConfig } from 'vite';
 import externalPackages from '../../external-packages.config';
 import type { ElectronConfig } from '../../types';
 import {
+  commonSrc,
   getBuildDir,
   getDevBuildDir,
   getMainSrc,
@@ -24,7 +25,7 @@ export function getMainViteConfig(api: IApi): InlineConfig {
     mode,
     resolve: {
       alias: {
-        '@/common': path.join(process.cwd(), 'src/common'),
+        '@/common': path.join(process.cwd(), commonSrc),
         '@': getMainSrc(api),
       },
     },
@@ -65,7 +66,7 @@ export function getPreloadViteConfig(
     mode,
     resolve: {
       alias: {
-        '@/common': path.join(process.cwd(), 'src/common'),
+        '@/common': path.join(process.cwd(), commonSrc),
         '@': getPreloadSrc(api),
       },
     },

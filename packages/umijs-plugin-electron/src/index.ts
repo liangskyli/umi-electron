@@ -9,6 +9,7 @@ import externalPackages from './external-packages.config';
 import setup from './setup';
 import type { ElectronConfig, LogType } from './types';
 import {
+  commonSrc,
   getAbsOutputDir,
   getBuildDir,
   getBundledDir,
@@ -16,6 +17,7 @@ import {
   getPreloadSrc,
   getRootPkg,
   logProcess,
+  modifyTsConfigFile,
 } from './utils';
 
 const defaultConfig: ElectronConfig = {
@@ -83,6 +85,7 @@ export default function (api: IApi) {
           overwrite: true,
         },
       );
+      modifyTsConfigFile(api, mainSrc);
     }
 
     const preloadSrc = getPreloadSrc(api);
@@ -92,6 +95,7 @@ export default function (api: IApi) {
         preloadSrc,
         { overwrite: true },
       );
+      modifyTsConfigFile(api, preloadSrc);
     }
   }
 
@@ -120,7 +124,7 @@ export default function (api: IApi) {
       config.electron as ElectronConfig;
     config.outputPath = path.join(outputDir, 'bundled');
     config.alias = config.alias || {};
-    config.alias['@/common'] = path.join(process.cwd(), 'src/common');
+    config.alias['@/common'] = path.join(process.cwd(), commonSrc);
 
     config.history = config.history || {
       type: routerMode,
@@ -174,12 +178,9 @@ export default function (api: IApi) {
 
     externals.forEach((external) => {
       if (!buildPkg.dependencies![external]) {
-        buildPkg.dependencies![external] = require(path.join(
-          process.cwd(),
-          'node_modules',
-          external,
-          'package.json',
-        ))?.version;
+        buildPkg.dependencies![external] = require(
+          path.join(process.cwd(), 'node_modules', external, 'package.json'),
+        )?.version;
       }
     });
 
