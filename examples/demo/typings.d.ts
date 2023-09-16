@@ -1,1 +1,1 @@
-import './src/.umi/typings';
+import 'umi/typings';

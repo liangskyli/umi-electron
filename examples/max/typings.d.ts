@@ -1,1 +1,1 @@
-import './src/.umi/typings';
+import '@umijs/max/typings';
