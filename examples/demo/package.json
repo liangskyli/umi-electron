@@ -11,16 +11,17 @@
     "electron:dir": "umi build electron --dir",
     "electron:build:win": "umi build electron --win",
     "electron:build:mac": "umi build electron --mac",
-    "electron:build:linux": "umi build electron --linux"
+    "electron:build:linux": "umi build electron --linux",
+    "update:deps": "pnpm update --interactive --latest"
   },
   "dependencies": {
-    "umi": "^4.0.79"
+    "umi": "^4.0.81"
   },
   "devDependencies": {
     "@liangskyli/umijs-plugin-electron": "workspace:*",
     "@types/react": "^18.2.21",
     "@types/react-dom": "^18.2.7",
-    "@umijs/lint": "^4.0.79",
+    "@umijs/lint": "^4.0.81",
     "electron": "^22.3.18",
     "electron-builder": "^23.6.0",
     "prettier": "^3.0.3",
