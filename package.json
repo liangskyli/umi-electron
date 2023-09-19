@@ -7,6 +7,7 @@
   },
   "scripts": {
     "test": "lerna run test",
+    "build": "lerna run build",
     "prepare": "husky install",
     "preinstall": "npx only-allow pnpm",
     "version:pre": "echo '发布预发布beta版本' && cross-env HUSKY=1 lerna version prerelease --preid beta",
@@ -16,8 +17,8 @@
     "version:minor": "echo '发布小版本' && cross-env HUSKY=1 lerna version minor",
     "version:major": "echo '发布主版本' && cross-env HUSKY=1 lerna version major",
     "version:graduate": "echo '预发布版本包升级为稳定版本' && cross-env HUSKY=1 lerna version --conventional-graduate",
-    "publish-all": "lerna run build && lerna publish from-package",
-    "publish-all-pre": "lerna run build && lerna publish from-package --pre-dist-tag beta",
+    "publish-all": "pnpm build && lerna publish from-package",
+    "publish-all-pre": "pnpm build && lerna publish from-package --pre-dist-tag beta",
     "update:deps": "pnpm update --interactive --latest"
   },
   "lint-staged": {
@@ -36,7 +37,7 @@
     "cross-env": "^7.0.3",
     "eslint": "^8.49.0",
     "execa": "^8.0.1",
-    "father": "4.3.1",
+    "father": "^4.3.5",
     "husky": "^8.0.3",
     "lerna": "7.3.0",
     "lint-staged": "^14.0.1",
