@@ -72,6 +72,7 @@ pnpm max electron init
 | routerMode     | 路由模式                        | `'hash' \| 'memory'`                                                           | `hash`                       |
 | builderOptions | 打包参数                        | [详见electron-builder配置](https://www.electron.build/configuration/configuration) | `{}`                         |
 | debugPort      | 主进程调试端口                     | `number`                                                                       | `5858`                       |
+| mainEntry      | mainEntry配置,主应用打包入口文件       | `string`                                                                       | `main.js`                    |
 | preloadEntry   | preload配置 key为输入文件名，值为输出文件名 | `{ [key: string]: string }`                                                    | `{'index.ts': 'preload.js'}` |
 | viteConfig     | 主进程vite配置                   | `(config: InlineConfig, type: ConfigType) => void;`                            | `() => {}`                   |
 | logProcess     | 自定义主进程输出                    | `(log: string, type: LogType) => void;`                                        |                              |
