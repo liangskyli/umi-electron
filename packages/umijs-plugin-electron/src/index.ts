@@ -28,6 +28,7 @@ const defaultConfig: ElectronConfig = {
   outputDir: 'dist_electron',
   routerMode: 'hash',
   debugPort: 5858,
+  mainEntry: 'main.js',
   preloadEntry: {
     'index.ts': 'preload.js',
   },
@@ -56,6 +57,7 @@ export default function (api: IApi) {
           builderOptions: zod.record(zod.string(), zod.any()).optional(),
           routerMode: zod.enum(['hash', 'memory']).optional(),
           debugPort: zod.number().optional(),
+          mainEntry: zod.string().optional(),
           preloadEntry: zod.record(zod.string(), zod.string()).optional(),
           viteConfig: zod
             .function()
@@ -157,11 +159,11 @@ export default function (api: IApi) {
    * 打包
    */
   async function buildDist() {
-    const { externals } = api.config.electron as ElectronConfig;
+    const { externals, mainEntry } = api.config.electron as ElectronConfig;
 
     const absOutputDir = getAbsOutputDir(api);
     const buildPkg = getRootPkg();
-    buildPkg.main = 'main.js';
+    buildPkg.main = mainEntry;
 
     delete buildPkg.scripts;
     delete buildPkg.devDependencies;

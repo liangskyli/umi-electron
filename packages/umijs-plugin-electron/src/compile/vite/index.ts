@@ -17,7 +17,8 @@ import {
  */
 export function getMainViteConfig(api: IApi): InlineConfig {
   const mode = api.env || 'development';
-  const { externals, viteConfig } = api.config.electron as ElectronConfig;
+  const { externals, viteConfig, mainEntry } = api.config
+    .electron as ElectronConfig;
 
   const external = [...externalPackages, ...externals];
 
@@ -42,7 +43,7 @@ export function getMainViteConfig(api: IApi): InlineConfig {
       rollupOptions: {
         external,
         output: {
-          entryFileNames: 'main.js',
+          entryFileNames: mainEntry,
         },
       },
       emptyOutDir: false,

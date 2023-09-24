@@ -24,6 +24,8 @@ export interface ElectronConfig {
   builderOptions: Configuration;
   /** 主进程调试端口 */
   debugPort: number;
+  /** mainEntry配置,主应用打包入口文件 */
+  mainEntry: string;
   /** preload配置 key为输入文件名，值为输出文件名 */
   preloadEntry: { [key: string]: string };
   /** 主进程vite配置 */

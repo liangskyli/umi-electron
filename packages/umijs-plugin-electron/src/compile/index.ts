@@ -58,7 +58,8 @@ const isRunPreload = (api: IApi, absPath: string) => {
  * @param api
  */
 export const runDev = async (api: IApi) => {
-  const { logProcess, debugPort } = api.config.electron as ElectronConfig;
+  const { logProcess, debugPort, mainEntry } = api.config
+    .electron as ElectronConfig;
   const electronPath = require(path.join(getNodeModulesPath(), 'electron'));
   let spawnProcess: ChildProcessWithoutNullStreams | null = null;
 
@@ -70,7 +71,7 @@ export const runDev = async (api: IApi) => {
 
     spawnProcess = spawn(String(electronPath), [
       `--inspect=${debugPort}`,
-      path.join(getDevBuildDir(api), 'main.js'),
+      path.join(getDevBuildDir(api), mainEntry),
     ]);
     spawnProcess.stdout.on('data', (data) => {
       const log = filterText(data.toString());
@@ -142,7 +143,7 @@ export const runDev = async (api: IApi) => {
         return;
       }
 
-      if (absPath === path.join(getDevBuildDir(api), 'main.js')) {
+      if (absPath === path.join(getDevBuildDir(api), mainEntry)) {
         runMainDebounced();
         return;
       }
