@@ -1,3 +1,4 @@
+import '@/common/index';
 import { createMainWindow } from '@/main-window';
 import { app, protocol } from 'electron';
 

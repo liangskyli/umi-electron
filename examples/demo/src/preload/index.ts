@@ -1,3 +1,4 @@
+import '@/common/index';
 import { contextBridge } from 'electron';
 
 const apiKey = 'electron';

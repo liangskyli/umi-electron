@@ -8,6 +8,7 @@ import type { ElectronConfig } from '../types';
 import {
   debounce,
   filterText,
+  getCommonSrc,
   getDevBuildDir,
   getMainSrc,
   getNodeModulesPath,
@@ -39,6 +40,19 @@ const buildPreload = (api: IApi): Promise<any> => {
   return Promise.resolve();
 };
 
+const isRunPreload = (api: IApi, absPath: string) => {
+  let isRunPreload = false;
+  const { preloadEntry } = api.config.electron as ElectronConfig;
+  Object.keys(preloadEntry).forEach((inputFileName) => {
+    if (
+      absPath === path.join(getDevBuildDir(api), preloadEntry[inputFileName])
+    ) {
+      isRunPreload = true;
+    }
+  });
+  return isRunPreload;
+};
+
 /**
  * 以开发模式运行
  * @param api
@@ -48,7 +62,7 @@ export const runDev = async (api: IApi) => {
   const electronPath = require(path.join(getNodeModulesPath(), 'electron'));
   let spawnProcess: ChildProcessWithoutNullStreams | null = null;
 
-  const runMain = debounce(() => {
+  const runMain = () => {
     if (spawnProcess !== null) {
       spawnProcess.kill('SIGKILL');
       spawnProcess = null;
@@ -77,19 +91,27 @@ export const runDev = async (api: IApi) => {
     });
 
     return spawnProcess;
-  }, TIMEOUT);
+  };
+
+  const runMainDebounced = debounce(() => runMain(), TIMEOUT);
 
   const buildMainDebounced = debounce(() => buildMain(api), TIMEOUT);
 
   const buildPreloadDebounced = debounce(() => buildPreload(api), TIMEOUT);
 
-  const runPreload = debounce(() => {}, TIMEOUT);
+  const runPreload = () => {
+    // preload change restart main
+    runMain();
+  };
+
+  const runPreloadDebounced = debounce(() => runPreload(), TIMEOUT);
 
   // 启动electron前编译主进程
   await Promise.all([buildMain(api), buildPreload(api)]);
 
   const watcher = chokidar.watch(
     [
+      `${getCommonSrc()}/**`,
       `${getMainSrc(api)}/**`,
       `${getPreloadSrc(api)}/**`,
       `${getDevBuildDir(api)}/**`,
@@ -104,34 +126,38 @@ export const runDev = async (api: IApi) => {
         spawnProcess = null;
       }
     })
-    .on('add', (path) => {
-      if (path.includes(getDevBuildDir(api))) {
-        return runMain();
-      }
-
-      if (spawnProcess !== undefined && path.includes('preload.js')) {
-        return runPreload();
+    .on('add', (absPath) => {
+      if (absPath.includes(getDevBuildDir(api))) {
+        return runMainDebounced();
       }
     })
-    .on('change', (path) => {
-      if (path.includes(getMainSrc(api))) {
-        return buildMainDebounced();
+    .on('change', (absPath) => {
+      if (absPath.includes(getCommonSrc())) {
+        buildMainDebounced();
+        buildPreloadDebounced();
+        return;
+      }
+      if (absPath.includes(getMainSrc(api))) {
+        buildMainDebounced();
+        return;
       }
 
-      if (path.includes('main.js')) {
-        return runMain();
+      if (absPath === path.join(getDevBuildDir(api), 'main.js')) {
+        runMainDebounced();
+        return;
       }
 
-      if (path.includes(getPreloadSrc(api))) {
-        return buildPreloadDebounced();
+      if (absPath.includes(getPreloadSrc(api))) {
+        buildPreloadDebounced();
+        return;
       }
 
-      if (path.includes('preload.js')) {
-        return runPreload();
+      if (isRunPreload(api, absPath)) {
+        return runPreloadDebounced();
       }
     });
 
-  await runMain();
+  await runMainDebounced();
 };
 
 /**

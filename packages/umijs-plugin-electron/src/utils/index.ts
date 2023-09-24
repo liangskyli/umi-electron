@@ -99,6 +99,10 @@ export function getPreloadSrc(api: IApi) {
   return path.join(process.cwd(), preloadSrc);
 }
 
+export function getCommonSrc() {
+  return path.join(process.cwd(), commonSrc);
+}
+
 /**
  * 获取开发环境编译目录
  * @param api
