@@ -121,6 +121,10 @@ export default function (api: IApi) {
 
   api.modifyConfig((oldConfig) => {
     const config = lodash.merge({ electron: defaultConfig }, oldConfig);
+    if (oldConfig.electron?.preloadEntry) {
+      // preloadEntry config not merge, replace cover
+      config.electron.preloadEntry = oldConfig.electron.preloadEntry;
+    }
 
     const { outputDir, externals, routerMode } =
       config.electron as ElectronConfig;
