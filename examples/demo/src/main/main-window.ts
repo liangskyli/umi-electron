@@ -1,4 +1,4 @@
-import createProtocol from '@/createProtocol';
+import createProtocol from '@/create-protocol';
 import { app, BrowserWindow } from 'electron';
 import * as path from 'path';
 
@@ -30,7 +30,6 @@ function createMainWindow() {
     width: 800,
     height: 600,
     webPreferences: {
-      contextIsolation: true,
       preload: path.join(__dirname, 'preload-main.js'),
     },
   });
