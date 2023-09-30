@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.0](https://github.com/liangskyli/umi-electron/compare/v0.2.0...v0.3.0) (2023-09-30)
+
+
+### Features
+
+* add mainEntry config ([c377976](https://github.com/liangskyli/umi-electron/commit/c377976000aad00eaaf638928f056a2a90e79c4b))
+* preload and common file support hrm ([83f6df3](https://github.com/liangskyli/umi-electron/commit/83f6df333aae3ce12de323c65cbe7b27c6577bca))
+
+
+### Bug Fixes
+
+* preload tsconfig.json replace commonRelativePath error path, remove filterText fn ([822151a](https://github.com/liangskyli/umi-electron/commit/822151ad48a8956c52300ad1f64784aa0eb45280))
+* preloadEntry config not merge, replace cover ([173fa68](https://github.com/liangskyli/umi-electron/commit/173fa68c01b12a84d0417fd71af720b29619cdd9))
+
+
+
 ## [0.2.0](https://github.com/liangskyli/umi-electron/compare/v0.1.2...v0.2.0) (2023-09-16)
 
 
