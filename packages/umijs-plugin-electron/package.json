@@ -28,6 +28,9 @@
   "scripts": {
     "dev": "father dev",
     "build": "father build",
+    "test": "vitest run",
+    "test-u": "vitest -u run",
+    "coverage": "vitest run --coverage",
     "update:deps": "pnpm update --interactive --latest"
   },
   "publishConfig": {

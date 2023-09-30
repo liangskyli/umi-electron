@@ -15,3 +15,5 @@
 
 /lerna-debug.log
 .pnpm-*.log
+/packages/umijs-plugin-electron/test/gen-dir/main/
+/packages/umijs-plugin-electron/test/gen-dir/preload/
