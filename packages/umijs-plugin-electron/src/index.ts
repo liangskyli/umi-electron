@@ -87,7 +87,7 @@ export default function (api: IApi) {
           overwrite: true,
         },
       );
-      modifyTsConfigFile(api, mainSrc);
+      modifyTsConfigFile(mainSrc);
     }
 
     const preloadSrc = getPreloadSrc(api);
@@ -97,7 +97,7 @@ export default function (api: IApi) {
         preloadSrc,
         { overwrite: true },
       );
-      modifyTsConfigFile(api, preloadSrc);
+      modifyTsConfigFile(preloadSrc);
     }
   }
 

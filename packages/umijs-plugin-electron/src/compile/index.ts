@@ -7,7 +7,6 @@ import { build as viteBuild } from 'vite';
 import type { ElectronConfig } from '../types';
 import {
   debounce,
-  filterText,
   getCommonSrc,
   getDevBuildDir,
   getMainSrc,
@@ -74,13 +73,13 @@ export const runDev = async (api: IApi) => {
       path.join(getDevBuildDir(api), mainEntry),
     ]);
     spawnProcess.stdout.on('data', (data) => {
-      const log = filterText(data.toString());
+      const log = data.toString();
       if (log) {
         logProcess(log, 'normal');
       }
     });
     spawnProcess.stderr.on('data', (data) => {
-      const log = filterText(data.toString());
+      const log = data.toString();
       if (log) {
         logProcess(log, 'error');
       }

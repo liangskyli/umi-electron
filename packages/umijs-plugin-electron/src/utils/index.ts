@@ -136,44 +136,6 @@ export function getBundledDir(api: IApi) {
   return path.join(getAbsOutputDir(api), 'bundled');
 }
 
-/**
- * 过滤electron输出
- */
-export function filterText(s: string) {
-  const lines = s
-    .trim()
-    .split(/\r?\n/)
-    .filter((it) => {
-      // https://github.com/electron/electron/issues/4420
-      // this warning can be safely ignored
-      if (
-        it.includes('Couldn\'t set selectedTextBackgroundColor from default ()')
-      ) {
-        return false;
-      }
-      if (
-        it.includes('Use NSWindow\'s -titlebarAppearsTransparent=YES instead.')
-      ) {
-        return false;
-      }
-      if (it.includes('Debugger listening on')) {
-        return false;
-      }
-      return (
-        !it.includes(
-          'Warning: This is an experimental feature and could change at any time.',
-        ) &&
-        !it.includes('No type errors found') &&
-        !it.includes('webpack: Compiled successfully.')
-      );
-    });
-
-  if (lines.length === 0) {
-    return null;
-  }
-  return '  ' + lines.join('\n  ') + '\n';
-}
-
 export function logProcess(
   label: 'Electron' | 'Renderer' | 'Main',
   log: string | null,
@@ -216,17 +178,16 @@ export const getRelativePath = (
   return path.relative(absolutePath1, absolutePath2);
 };
 
-const getCommonTsConfigPath = (api: IApi) => {
-  const { mainSrc } = api.config.electron as ElectronConfig;
+const getCommonTsConfigPath = (dir: string) => {
   const commonRelativePath = getRelativePath(
-    getAbsolutePath(mainSrc),
+    getAbsolutePath(dir),
     getAbsolutePath(commonSrc),
   );
   return commonRelativePath;
 };
 
-export const modifyTsConfigFile = (api: IApi, dir: string) => {
-  const commonRelativePath = getCommonTsConfigPath(api);
+export const modifyTsConfigFile = (dir: string) => {
+  const commonRelativePath = getCommonTsConfigPath(dir);
   const tsconfigPath = path.join(dir, './tsconfig.json');
   let tsconfigData = fsExtra.readFileSync(tsconfigPath, { encoding: 'utf-8' });
   tsconfigData = tsconfigData.replace(
