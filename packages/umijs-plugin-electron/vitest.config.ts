@@ -3,7 +3,7 @@ export default defineConfig({
   test: {
     include: ['./**/*.test.{ts,js}'],
     environment: 'node',
-    setupFiles: ['./vite.setup.ts'],
+    setupFiles: ['./vitest.setup.ts'],
     testTimeout: 1000 * 60,
   },
 });
