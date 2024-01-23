@@ -38,7 +38,7 @@
   },
   "dependencies": {
     "@umijs/utils": "^4.1.1",
-    "vite": "^4.5.2",
+    "vite": "^5.0.12",
     "yargs": "^17.7.2"
   },
   "devDependencies": {
