@@ -183,7 +183,7 @@ const getCommonTsConfigPath = (dir: string) => {
     getAbsolutePath(dir),
     getAbsolutePath(commonSrc),
   );
-  return commonRelativePath;
+  return commonRelativePath.split(path.sep).join('/');
 };
 
 export const modifyTsConfigFile = (dir: string) => {

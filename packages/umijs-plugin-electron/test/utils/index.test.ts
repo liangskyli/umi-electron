@@ -33,7 +33,7 @@ describe('utils', () => {
   test('getDevBuildDir,getAbsOutputDir', () => {
     expect(
       getDevBuildDir({ paths: { absTmpPath: '/absTmpPath' } } as any),
-    ).toBe('/absTmpPath/electron');
+    ).toBe(path.join('', '/absTmpPath/electron'));
     expect(
       getAbsOutputDir({
         config: { electron: { outputDir: 'dist_electron' } },
@@ -58,7 +58,9 @@ describe('utils', () => {
   test('getRelativePath', () => {
     expect(getRelativePath('/a/b', '/a/b/c')).toBe('c');
     expect(getRelativePath('/a/b', '/a')).toBe('..');
-    expect(getRelativePath('/a/b/c/d', '/a/b/e')).toBe('../../e');
+    expect(getRelativePath('/a/b/c/d', '/a/b/e')).toBe(
+      path.join('', '../../e'),
+    );
   });
   test('modifyTsConfigFile', async () => {
     fsExtra.copySync(
