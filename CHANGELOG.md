@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.1](https://github.com/liangskyli/umi-electron/compare/v0.3.0...v0.3.1) (2024-01-23)
+
+
+### Bug Fixes
+
+* generator tsconfig.json paths @/common/* in windows ([36c5d19](https://github.com/liangskyli/umi-electron/commit/36c5d1998c416b8378d6de3f76c434e577c4df74))
+
+
+
 ## [0.3.0](https://github.com/liangskyli/umi-electron/compare/v0.2.0...v0.3.0) (2023-09-30)
 
 
