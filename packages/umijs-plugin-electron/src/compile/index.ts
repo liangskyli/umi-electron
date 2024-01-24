@@ -3,7 +3,6 @@ import type { ChildProcessWithoutNullStreams } from 'child_process';
 import { spawn } from 'child_process';
 import path from 'path';
 import type { IApi } from 'umi';
-import { build as viteBuild } from 'vite';
 import type { ElectronConfig } from '../types';
 import {
   debounce,
@@ -17,12 +16,14 @@ import { getMainViteConfig, getPreloadViteConfig } from './vite';
 
 const TIMEOUT = 500;
 
-const buildMain = (api: IApi) => {
+const buildMain = async (api: IApi) => {
+  const { build: viteBuild } = await import('vite');
   return viteBuild(getMainViteConfig(api));
 };
 
-const buildPreload = (api: IApi): Promise<any> => {
+const buildPreload = async (api: IApi) => {
   const { preloadEntry } = api.config.electron as ElectronConfig;
+  const { build: viteBuild } = await import('vite');
 
   //preload目录存在才编译
   if (fsExtra.pathExistsSync(getPreloadSrc(api))) {
