@@ -38,15 +38,15 @@
     "access": "public"
   },
   "dependencies": {
-    "@umijs/utils": "^4.1.1",
-    "vite": "^5.0.12",
+    "@umijs/utils": "^4.1.10",
+    "vite": "^5.2.11",
     "yargs": "^17.7.2"
   },
   "devDependencies": {
     "@types/yargs": "^17.0.32",
-    "electron": "^28.1.4",
-    "electron-builder": "^24.9.1",
-    "umi": "^4.1.1"
+    "electron": "^30.0.2",
+    "electron-builder": "^24.13.3",
+    "umi": "^4.1.10"
   },
   "peerDependencies": {
     "electron": ">=22.0.0",
