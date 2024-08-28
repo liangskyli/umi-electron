@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.0-beta.0](https://github.com/liangskyli/umi-electron/compare/v0.3.1...v0.4.0-beta.0) (2024-08-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade dependencies,node to v18,pnpm to v9
+
+### Features
+
+* add type commonjs in package.json, vite use await import ([438fb4e](https://github.com/liangskyli/umi-electron/commit/438fb4eef55dcea22ca7e40f8081bc547449d909))
+
+
+### Miscellaneous Chores
+
+* upgrade dependencies,node to v18,pnpm to v9 ([bf96668](https://github.com/liangskyli/umi-electron/commit/bf96668a6f5228c249736b51d5abd81a147ccfb5))
+
+
+
 ## [0.3.1](https://github.com/liangskyli/umi-electron/compare/v0.3.0...v0.3.1) (2024-01-23)
 
 
