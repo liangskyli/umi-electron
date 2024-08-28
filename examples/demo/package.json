@@ -15,7 +15,7 @@
     "update:deps": "pnpm update --interactive --latest"
   },
   "dependencies": {
-    "umi": "^4.1.10"
+    "umi": "^4.3.17"
   },
   "devDependencies": {
     "@liangskyli/umijs-plugin-electron": "workspace:*",
