@@ -184,6 +184,7 @@ export default function (api: IApi) {
 
     externals.forEach((external) => {
       if (!buildPkg.dependencies![external]) {
+        // eslint-disable-next-line @typescript-eslint/no-require-imports
         buildPkg.dependencies![external] = require(
           path.join(process.cwd(), 'node_modules', external, 'package.json'),
         )?.version;

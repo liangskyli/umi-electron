@@ -60,6 +60,7 @@ const isRunPreload = (api: IApi, absPath: string) => {
 export const runDev = async (api: IApi) => {
   const { logProcess, debugPort, mainEntry } = api.config
     .electron as ElectronConfig;
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
   const electronPath = require(path.join(getNodeModulesPath(), 'electron'));
   let spawnProcess: ChildProcessWithoutNullStreams | null = null;
 
