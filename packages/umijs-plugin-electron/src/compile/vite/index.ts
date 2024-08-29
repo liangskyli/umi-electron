@@ -1,4 +1,4 @@
-import * as path from 'path';
+import * as path from 'node:path';
 import type { IApi } from 'umi';
 import type { InlineConfig } from 'vite';
 import externalPackages from '../../external-packages.config';

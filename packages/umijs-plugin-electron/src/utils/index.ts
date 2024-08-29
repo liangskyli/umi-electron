@@ -1,5 +1,5 @@
 import { chalk, execa, fsExtra } from '@umijs/utils';
-import path from 'path';
+import path from 'node:path';
 import type { IApi } from 'umi';
 import type { ElectronConfig } from '../types';
 

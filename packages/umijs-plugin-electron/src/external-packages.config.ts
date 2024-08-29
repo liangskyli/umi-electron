@@ -48,7 +48,8 @@ export const builtins = [
   'vm',
   'zlib',
 ];
+export const builtinsWithNode = builtins.map((item) => `node:${item}`);
 
 export const libExternal = ['webpack', 'glob'];
 
-export default [...builtins, ...external, ...libExternal];
+export default [...builtins, ...builtinsWithNode, ...external, ...libExternal];

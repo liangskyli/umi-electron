@@ -1,5 +1,5 @@
 import { fsExtra } from '@umijs/utils';
-import path from 'path';
+import path from 'node:path';
 import type { IApi } from 'umi';
 import { getRootPkg, installDevDependencies, setNpmClient } from './utils';
 
@@ -89,25 +89,22 @@ export default (api: IApi) => {
 
   // 打包electron windows平台
   if (!rootPkg.scripts['electron:build:win']) {
-    rootPkg.scripts[
-      'electron:build:win'
-    ] = `${umiCliName} build electron --win`;
+    rootPkg.scripts['electron:build:win'] =
+      `${umiCliName} build electron --win`;
     isUpdateRootPkg = true;
   }
 
   // 打包electron mac平台
   if (!rootPkg.scripts['electron:build:mac']) {
-    rootPkg.scripts[
-      'electron:build:mac'
-    ] = `${umiCliName} build electron --mac`;
+    rootPkg.scripts['electron:build:mac'] =
+      `${umiCliName} build electron --mac`;
     isUpdateRootPkg = true;
   }
 
   // 打包electron linux平台
   if (!rootPkg.scripts['electron:build:linux']) {
-    rootPkg.scripts[
-      'electron:build:linux'
-    ] = `${umiCliName} build electron --linux`;
+    rootPkg.scripts['electron:build:linux'] =
+      `${umiCliName} build electron --linux`;
     isUpdateRootPkg = true;
   }
 

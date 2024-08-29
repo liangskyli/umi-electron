@@ -1,6 +1,6 @@
 import { protocol } from 'electron';
-import * as path from 'path';
-import { URL } from 'url';
+import * as path from 'node:path';
+import { URL } from 'node:url';
 
 const createProtocol = (scheme: string) => {
   protocol.registerFileProtocol(scheme, (request, respond) => {

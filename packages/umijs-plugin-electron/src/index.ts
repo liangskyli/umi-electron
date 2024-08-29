@@ -1,6 +1,6 @@
 import { chalk, fsExtra, lodash } from '@umijs/utils';
 import { configureBuildCommand } from 'electron-builder/out/builder';
-import * as path from 'path';
+import * as path from 'node:path';
 import type { IApi } from 'umi';
 import yargs from 'yargs';
 import { buildElectron } from './build-electron';

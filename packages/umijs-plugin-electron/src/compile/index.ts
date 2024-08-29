@@ -1,7 +1,7 @@
 import { chokidar, fsExtra } from '@umijs/utils';
-import type { ChildProcessWithoutNullStreams } from 'child_process';
-import { spawn } from 'child_process';
-import path from 'path';
+import type { ChildProcessWithoutNullStreams } from 'node:child_process';
+import { spawn } from 'node:child_process';
+import path from 'node:path';
 import type { IApi } from 'umi';
 import type { ElectronConfig } from '../types';
 import {
