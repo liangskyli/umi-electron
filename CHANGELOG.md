@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.0](https://github.com/liangskyli/umi-electron/compare/v0.4.0-beta.0...v0.4.0) (2024-08-30)
+
+
+### Features
+
+* support node module for node: prefix ([d179fd6](https://github.com/liangskyli/umi-electron/commit/d179fd629e6e7e589c97d2a94d31b280c559eb0b))
+
+
+
 ## [0.4.0-beta.0](https://github.com/liangskyli/umi-electron/compare/v0.3.1...v0.4.0-beta.0) (2024-08-28)
 
 
