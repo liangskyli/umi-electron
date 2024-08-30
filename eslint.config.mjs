@@ -18,8 +18,7 @@ export default [
   {
     files: ['**/*.{js,mjs,cjs,ts,tsx}'],
   },
-  { languageOptions: { globals: globals.browser } },
-  { languageOptions: { globals: globals.node } },
+  { languageOptions: { globals: { ...globals.browser, ...globals.node } } },
   pluginJs.configs.recommended,
   ...tsEslint.configs.recommended,
   {
