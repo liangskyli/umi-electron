@@ -1,3 +1,5 @@
+import { builtinModules } from 'node:module';
+
 /**
  By default, vite optimizes and packs all the necessary dependencies into your bundle,
  so there is no need to supply them in your application as a node module.
@@ -8,46 +10,7 @@
  */
 export const external = ['electron', 'electron-updater'];
 
-export const builtins = [
-  'assert',
-  'async_hooks',
-  'buffer',
-  'child_process',
-  'cluster',
-  'console',
-  'constants',
-  'crypto',
-  'dgram',
-  'dns',
-  'domain',
-  'events',
-  'fs',
-  'http',
-  'http2',
-  'https',
-  'inspector',
-  'module',
-  'net',
-  'os',
-  'path',
-  'perf_hooks',
-  'process',
-  'punycode',
-  'querystring',
-  'readline',
-  'repl',
-  'stream',
-  'string_decoder',
-  'timers',
-  'tls',
-  'trace_events',
-  'tty',
-  'url',
-  'util',
-  'v8',
-  'vm',
-  'zlib',
-];
+export const builtins = builtinModules.filter((e) => !e.startsWith('_'));
 export const builtinsWithNode = builtins.map((item) => `node:${item}`);
 
 export const libExternal = ['webpack', 'glob'];
