@@ -67,7 +67,7 @@ pnpm max electron init
 |----------------|-----------------------------|--------------------------------------------------------------------------------|------------------------------|
 | mainSrc        | 主进程src目录                    | `string`                                                                       | `src/main`                   |
 | preloadSrc     | preload src目录               | `string`                                                                       | `src/preload`                |
-| externals      | node模块                      | `string[]`                                                                     | `[]`                         |
+| externals      | node模块(外部依赖项)               | `string[]`                                                                     | `[]`                         |
 | outputDir      | 打包目录                        | `string`                                                                       | `dist_electron`              |
 | routerMode     | 路由模式                        | `'hash' \| 'memory'`                                                           | `hash`                       |
 | builderOptions | 打包参数                        | [详见electron-builder配置](https://www.electron.build/configuration/configuration) | `{}`                         |
@@ -76,6 +76,11 @@ pnpm max electron init
 | preloadEntry   | preload配置 key为输入文件名，值为输出文件名 | `{ [key: string]: string }`                                                    | `{'index.ts': 'preload.js'}` |
 | viteConfig     | 主进程vite配置                   | `(config: InlineConfig, type: ConfigType) => void;`                            | `() => {}`                   |
 | logProcess     | 自定义主进程输出                    | `(log: string, type: LogType) => void;`                                        |                              |
+
+- externals属性配置说明
+  - node内置模块和electron，electron-updater，内部都默认配置，这里不需要再配置了。
+  - 这里配置的是外部依赖项模块，必须是主进程和preload预加载里的模块。
+
 
 ### Electron 版本降级
 
